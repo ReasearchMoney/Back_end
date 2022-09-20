@@ -13,19 +13,15 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
     
     console.log(req.body)
     console.log(req.user.id)
-    const post = await Todo.create({
-      todo: req.body.todo,
-      // cost:req.body.cost,
-      UserId: req.user.id,
-    });
-    // const post2 = await Sub_todo.create({
+    // const post = await Post.create({
     //   todo: req.body.todo,
     //   // cost:req.body.cost,
-    //   TodoId: 1,
+    //   UserId: req.user.id,
     // });
+   
     
    console.log('post respond')
-    res.redirect('/indexpage');
+    res.redirect('/mypage');
   } catch (error) {
     console.error(error);
     next(error);
@@ -35,26 +31,13 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
 router.get('/', async (req, res, next) => {
   try {
     console.log("api/post start")
-    const posts = await Todo.findAll(
-      {
-        where: {
-        UserId:1
-        },
-        include:[
-        {
-        model: Sub_todo,
-        required: false
-      }]
-        
-        
-        
-      }
+    const posts = await Post.findAll(
       
     );
     console.log('backend posts')
     console.log(posts)
     return res.json({
-      twits: posts
+      research: posts
         });
   
   } catch (err) {

@@ -22,25 +22,7 @@ router.get('/join', isNotLoggedIn, (req, res) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    // console.log("api/post start")
-    // const posts = await Todo.findAll({
-    //   // where: {
-    //   //   UserId:req.user.id
-    //   // },
-    //   include: {
-    //     model: User,
-    //     attributes: ['id', 'nick'],
-    //   },
-    //   order: [['createdAt', 'DESC']],
-    // });
-    // console.log('backend posts')
-    // console.log(posts)
-    // return res.json({
-    //   twits: {
-    //     todo:"hello",date:"2022-12-11"
-    //   },
-         
-    //     });
+  
    return res.json({
     twit:"twitter data"
       })

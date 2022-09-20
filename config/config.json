@@ -2,21 +2,21 @@
     "development": {
       "username": "root",
       "password": "hwang697433!",
-      "database": "Todo_Website",
+      "database": "Research_money",
       "host": "127.0.0.1",
       "dialect": "mysql"
     },
     "test": {
      "username": "root",
       "password": "Hwang697433!",
-      "database": "Todo_Website",
+      "database": "Research_money",
       "host": "127.0.0.1",
       "dialect": "mysql"
     },
     "production": {
      "username": "root",
       "password": "Hwang697433!",
-      "database": "Todo_Website",
+      "database": "Research_money",
       "host": "127.0.0.1",
       "dialect": "mysql"
     }
