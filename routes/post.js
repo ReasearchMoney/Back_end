@@ -3,7 +3,7 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const { Sub_todo,Todo, Hashtag } = require('../models');
+const { Post, User,Hashtag } = require('../models');
 const { isLoggedIn } = require('./middlewares');
 
 const router = express.Router();
@@ -13,11 +13,23 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
     
     console.log(req.body)
     console.log(req.user.id)
-    // const post = await Post.create({
-    //   todo: req.body.todo,
-    //   // cost:req.body.cost,
-    //   UserId: req.user.id,
-    // });
+    const post = await Post.create({
+      title: req.body.title,
+      post: req.body.post,
+      start_date_r: req.body.start_date_r,
+      end_date_r: req.body.end_date_r,
+      start_date: req.body.start_date,
+      end_date: req.body.end_date,
+      period: req.body.period,
+      pay: req.body.pay,
+      url: req.body.url,
+      image: req.body.image,
+      institution: req.body.institution,
+      institution_name: req.body.institution_name,
+      zone_1: req.body.zone_1,
+      zone_2: req.body.zone_2,
+      UserId: req.user.id,
+    });
    
     
    console.log('post respond')
@@ -30,10 +42,13 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    console.log("api/post start")
-    const posts = await Post.findAll(
-      
-    );
+    const posts = await Post.findAll({
+      include: {
+        model: User,
+        attributes: ['id', 'nickname'],
+      },
+      order: [['createdAt', 'DESC']],
+    });
     console.log('backend posts')
     console.log(posts)
     return res.json({

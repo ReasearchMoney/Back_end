@@ -75,9 +75,10 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
 router.get('/logout', isLoggedIn, (req, res) => {
   console.log('logout')
   // req.logout();
+  res.redirect('/');
   req.session.destroy(); //세션쿠키를 지움
   // req.useStore().reset()
-  res.redirect('/');
+  
 });
 
 // router.get('/kakao', passport.authenticate('kakao'));

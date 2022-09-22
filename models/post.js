@@ -11,6 +11,14 @@ module.exports = class Post extends Sequelize.Model {
         type: Sequelize.STRING(2000),
         allowNull: false,
       },
+      start_date_r: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      end_date_r: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
       start_date: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -27,10 +35,7 @@ module.exports = class Post extends Sequelize.Model {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
-      state: {
-        type: Sequelize.STRING(140),
-        allowNull: false,
-      },
+     
       url: {
         type: Sequelize.STRING,
         allowNull: true,
@@ -55,10 +60,10 @@ module.exports = class Post extends Sequelize.Model {
         type: Sequelize.STRING(140),
         allowNull: false,
       },
-      // zone_2: {
-      //   type: Sequelize.STRING(140),
-      //   allowNull: false,
-      // },
+      zone_2: {
+        type: Sequelize.STRING(140),
+        allowNull: false,
+      },
      
     }, {
       sequelize,
