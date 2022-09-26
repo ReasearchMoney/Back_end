@@ -63,7 +63,6 @@ router.get('/', async (req, res, next) => {
 });
 
 
-
 router.post('/delete/:id', isLoggedIn, upload2.none(), async (req, res, next) => {
   try {
     const post = await Post.destroy({
@@ -72,7 +71,65 @@ router.post('/delete/:id', isLoggedIn, upload2.none(), async (req, res, next) =>
       }
     });
    console.log('redirect')
-  res.redirect('/indexpage');
+  return 
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+router.get('/:id', async (req, res, next) => {
+  try {
+    const post = await Post.findOne({
+      
+      where: {
+        id: req.params.id,
+      },
+      include: {
+        model: User,
+        attributes: ['id', 'nickname'],
+      }
+    });
+   console.log('post')
+   return res.json({
+      research: post
+        });
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+router.get('/mypage/:id', async (req, res, next) => {
+  try {
+    const post = await Post.findAll({
+      
+      where: {
+        UserId: req.params.id,
+      },
+      include: {
+        model: User,
+        attributes: ['id', 'nickname'],
+      }
+    });
+   console.log('post')
+   return res.json({
+      research: post
+        });
+  } catch (error) {
+    console.error(error);
+    next(error);
+  }
+});
+
+router.post('/update/:id', isLoggedIn, upload2.none(), async (req, res, next) => {
+  try {
+    const post = await Post.update({
+      title: req.body.title,
+      where: {
+        id: req.params.id,
+      }
+    });
+   console.log('redirect')
+  return 
   } catch (error) {
     console.error(error);
     next(error);
