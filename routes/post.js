@@ -122,14 +122,16 @@ router.get('/mypage/:id', async (req, res, next) => {
 
 router.post('/update/:id', isLoggedIn, upload2.none(), async (req, res, next) => {
   try {
+    console.log(req.body.title)
     const post = await Post.update({
-      title: req.body.title,
-      where: {
-        id: req.params.id,
-      }
-    });
-   console.log('redirect')
-  return 
+      title: req.body.title
+    },
+    { where: { id: req.params.id } });
+    console.log('redirect',post)
+    
+    console.log('post respond')
+    return res.redirect("/")
+   
   } catch (error) {
     console.error(error);
     next(error);
