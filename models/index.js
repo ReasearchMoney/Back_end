@@ -4,6 +4,7 @@ const config = require('../config/config')[env];
 const User = require('./user');
 const Post = require('./post');
 const Hashtag = require('./hashtag');
+// const Book = require('./book');
 
 
 
@@ -16,19 +17,20 @@ db.sequelize = sequelize;
 db.User = User;
 db.Post = Post;
 db.Hashtag = Hashtag;
+// db.Book = Book;
 
 
 
 User.init(sequelize);
 Post.init(sequelize);
 Hashtag.init(sequelize);
-
+// Book.init(sequelize);
 
 
 User.associate(db);
 Post.associate(db);
 Hashtag.associate(db);
-
+// Book.associate(db);
 
 
 module.exports = db;
