@@ -73,21 +73,18 @@ router.post('/login', isNotLoggedIn, (req, res, next) => {
 });
 
 router.get('/logout', isLoggedIn, (req, res) => {
-  console.log('logout')
-  // req.logout();
-  res.redirect('/');
-  req.session.destroy(); //세션쿠키를 지움
-  // req.useStore().reset()
-  
+ req.logout((err) => {
+		req.session.destroy();
+		if (err) {
+		console.error(err)
+		} else {
+      // res.status(200).send("server ok: 로그아웃 완료");
+      return res.redirect("/");
+		}
+	});
+ 
 });
 
-// router.get('/kakao', passport.authenticate('kakao'));
-
-// router.get('/kakao/callback', passport.authenticate('kakao', {
-//   failureRedirect: '/',
-// }), (req, res) => {
-//   res.redirect('/');
-// });
 
 
 module.exports = router;
